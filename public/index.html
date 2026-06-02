@@ -244,6 +244,10 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-
     </div>
     <button class="btn btn-o" onclick="document.getElementById('calSyncBox').style.display='none'" style="align-self:flex-start">إغلاق</button>
   </div>
+</div>
+
+<div class="toolbar no-print">
+  <div class="fg"><label>من شهر</label><select id="fromMonth"></select></div>
   <div class="fg"><label>إلى شهر</label><select id="toMonth"></select></div>
   <button class="btn btn-p" onclick="render()">عرض</button>
   <button class="btn btn-t" onclick="togglePanel()">＋ إضافة</button>
@@ -338,7 +342,7 @@ const TYPE_AR={task:'مهمة',work:'مهمة عمل',meeting:'اجتماع',dea
 const COLOR={task:'#6a3491',work:'#1f6f3c',meeting:'#0e4d64',deadline:'#a8321f',salary:'#0c7a6f',note:'#7a5b00',holiday:'#9a2a20',national:'#7a4310',flight:'#1652a8',car:'#34495e',hotel:'#9c4a91'};
 const AR_W=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const URL_KEY='hijriCal_webAppUrl';
-const DEFAULT_URL='https://script.google.com/macros/s/AKfycbyp-Y15NlD9XGGjqMDtDAsDb_s_08zP68PnnSnnVBJNOtfLJnBmlVO2ZJbYg4JOol6hew/exec';
+const DEFAULT_URL='https://script.google.com/macros/s/AKfycbzaQ11_45DgArZp19rvqHVtCsZXVB3pJMZLg7-PDEyOTOxjsoK2EISEdHQi_B7kCYaGUA/exec';
 
 let WEB_APP_URL = localStorage.getItem(URL_KEY) || DEFAULT_URL;
 let tasks = [];          // من الخادم
@@ -434,9 +438,10 @@ async function apiPost(payload){
 function initSelects(){
   ['fromMonth','toMonth','evMonth'].forEach(id=>{
     const s=document.getElementById(id);
+    if(!s)return;
     MONTHS.forEach((m,i)=>{const o=document.createElement('option');o.value=i;o.textContent=m.ar;s.appendChild(o)});
   });
-  document.getElementById('toMonth').value=11;
+  const tm=document.getElementById('toMonth');if(tm)tm.value=11;
 }
 function gregDateObj(mi,off){const sg=MONTHS[mi].sg;const d=new Date(sg.y,sg.m-1,sg.d);d.setDate(d.getDate()+off);return d}
 function gregLabel(mi,off){const d=gregDateObj(mi,off);return d.getDate()+'/'+(d.getMonth()+1)}
