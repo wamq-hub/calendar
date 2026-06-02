@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقويم المهام · 1448هـ</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0e4d64; --primary-2:#13738f; --teal:#13a89a; --teal-d:#0c7a6f;
+  --salary-c:#0c7a6f; --salary-bg:#d7f5ef; --salary-bd:#a3e6da;
+  --holiday-c:#9a2a20; --holiday-bg:#fbe0dc; --holiday-bd:#f3b5ac;
+  --weekend-c:#5a6b7a; --weekend-bg:#eef1f4;
+  --task-c:#6a3491; --task-bg:#ede0f7; --task-bd:#d6bcec;
+  --work-c:#1f6f3c; --work-bg:#dcf2e3; --work-bd:#aadcbb;
+  --meeting-c:#0e4d64; --meeting-bg:#d6ecf4; --meeting-bd:#a9d6e6;
+  --deadline-c:#a8321f; --deadline-bg:#fce0db; --deadline-bd:#f2b4a8;
+  --note-c:#7a5b00; --note-bg:#fbf0cf; --note-bd:#f0db9a;
+  --national-c:#7a4310; --national-bg:#fdebd0; --national-bd:#f0b97a;
+  --flight-c:#1652a8; --flight-bg:#dde9f9; --flight-bd:#abc8ee;
+  --car-c:#34495e; --car-bg:#e2e7ec; --car-bd:#b8c2cc;
+  --hotel-c:#9c4a91; --hotel-bg:#f6e3f3; --hotel-bd:#e4bcde;
+  --bg:#eef1f4; --card:#fff; --bd:#dde2e7; --text:#243340; --muted:#7a8896;
+  --shadow:0 1px 3px rgba(20,40,60,.06),0 4px 16px rgba(20,40,60,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.hdr{background:linear-gradient(120deg,#0e4d64,#13738f 55%,#13a89a);color:#fff;padding:1.3rem 1.8rem 1.1rem;position:relative;overflow:hidden}
+.hdr::after{content:"";position:absolute;left:-40px;top:-40px;width:200px;height:200px;background:rgba(255,255,255,.06);border-radius:50%}
+.hdr h1{font-size:1.45rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.hdr p{font-size:.82rem;opacity:.85;margin-top:3px;font-weight:300}
+.sync-badge{position:absolute;left:18px;bottom:14px;font-size:11px;background:rgba(255,255,255,.15);padding:4px 12px;border-radius:20px;display:flex;align-items:center;gap:6px}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#ffd24a}
+.sync-dot.on{background:#5be584} .sync-dot.off{background:#ff7a7a}
+.toolbar{background:var(--card);border-bottom:1px solid var(--bd);padding:.75rem 1.4rem;display:flex;flex-wrap:wrap;gap:.7rem;align-items:flex-end;box-shadow:var(--shadow)}
+.fg{display:flex;flex-direction:column;gap:3px}
+.fg label{font-size:10.5px;color:var(--muted);font-weight:500}
+select,input,textarea,.fg input{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;font-family:inherit;font-size:13px;color:var(--text);background:#fafbfc;transition:border .15s}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-2);background:#fff}
+.btn{padding:8px 16px;border-radius:8px;border:none;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:5px}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--primary);color:#fff} .btn-p:hover{background:var(--primary-2)}
+.btn-t{background:var(--teal);color:#fff} .btn-t:hover{background:var(--teal-d)}
+.btn-g{background:#3b4a59;color:#fff} .btn-g:hover{background:#2c3a47}
+.btn-o{background:transparent;color:var(--primary);border:1px solid var(--bd)} .btn-o:hover{background:#f0f3f6}
+.spacer{margin-right:auto}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:12px;margin:.8rem 1.4rem 0;padding:1rem 1.3rem;display:none;box-shadow:var(--shadow)}
+.panel.open{display:block;animation:slide .2s ease}
+@keyframes slide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.panel h3{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:.8rem;display:flex;align-items:center;gap:6px}
+.prow{display:flex;flex-wrap:wrap;gap:.7rem;align-items:flex-end}
+.prow input[type=text]{flex:1;min-width:160px}
+.prow textarea{flex:1;min-width:200px;resize:vertical;min-height:38px;font-size:13px}
+.img-preview{max-width:120px;max-height:90px;border-radius:8px;border:1px solid var(--bd);margin-top:6px;display:none}
+.config-box{background:#fff8e6;border:1px solid #f0db9a;border-radius:10px;margin:.8rem 1.4rem 0;padding:.9rem 1.2rem;font-size:12px;color:#6b5400}
+.config-box input{width:100%;margin-top:6px}
+.stats{display:flex;flex-wrap:wrap;gap:.6rem;padding:.7rem 1.4rem;background:var(--card);border-bottom:1px solid var(--bd)}
+.stat{display:flex;align-items:center;gap:7px;background:#f5f7f9;border-radius:9px;padding:6px 12px;font-size:11.5px;color:var(--muted)}
+.stat b{font-size:15px;color:var(--text);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:9px;padding:.55rem 1.4rem;font-size:11px;color:var(--muted);align-items:center;background:var(--bg)}
+.leg{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.main{padding:.9rem 1.4rem 2.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1.1rem}
+.mcard{background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);break-inside:avoid;display:flex;flex-direction:column}
+.mhead{padding:11px 15px;background:linear-gradient(100deg,var(--primary),var(--primary-2));color:#fff;display:flex;justify-content:space-between;align-items:center}
+.mhead .ar{font-size:14.5px;font-weight:600} .mhead .en{font-size:10.5px;opacity:.82;text-align:left;direction:ltr;line-height:1.5}
+.dhdr{display:grid;grid-template-columns:repeat(7,1fr);background:#eef4f7;border-bottom:1px solid var(--bd)}
+.dh{text-align:center;font-size:10px;font-weight:600;color:var(--primary);padding:5px 2px}
+.dh.w{color:var(--weekend-c)}
+.dgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:5px}
+.cell{border-radius:8px;padding:4px 3px;min-height:42px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;border:1px solid transparent;transition:all .12s;background:#fff;position:relative}
+.cell:hover{border-color:var(--primary-2);box-shadow:0 0 0 2px rgba(19,115,143,.1)}
+.cell.empty{visibility:hidden;cursor:default}
+.cell.wknd{background:var(--weekend-bg)} .cell.wknd .hn{color:var(--weekend-c)}
+.cell.holiday{background:var(--holiday-bg)} .cell.holiday .hn{color:var(--holiday-c)}
+.cell.salary{background:var(--salary-bg)} .cell.salary .hn{color:var(--salary-c)}
+.cell.national{background:var(--national-bg)} .cell.national .hn{color:var(--national-c)}
+.hn{font-size:13px;font-weight:700;color:var(--text);line-height:1.2}
+.gn{font-size:8px;color:var(--muted);line-height:1.3}
+.cdots{display:flex;gap:2px;margin-top:2px;flex-wrap:wrap;justify-content:center;min-height:6px}
+.cdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.mlist{padding:8px 12px 12px;border-top:1px dashed var(--bd);background:#fafbfc}
+.mlist-title{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.li{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:8px;margin-bottom:4px;font-size:12px;background:#fff;border:1px solid var(--bd);position:relative}
+.li:hover{border-color:var(--primary-2)}
+.li.done{opacity:.6}
+.li.done .li-name{text-decoration:line-through}
+.li-date{flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--primary);color:#fff;border-radius:7px;width:34px;padding:2px 0;line-height:1.1}
+.li-date .dn{font-size:14px;font-weight:700}
+.li-date .dg{font-size:7.5px;opacity:.85}
+.li-date.is-holiday{background:var(--holiday-c)} .li-date.is-salary{background:var(--salary-c)} .li-date.is-national{background:var(--national-c)}
+.li-body{flex:1;display:flex;flex-direction:column;gap:3px;padding-top:1px;min-width:0}
+.li-name{font-weight:500;color:var(--text);line-height:1.35}
+.li-desc{font-size:10.5px;color:var(--muted);line-height:1.4}
+.li-meta{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.li-badge{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:500;padding:1px 7px;border-radius:20px}
+.li-links{display:flex;gap:6px;margin-top:2px;flex-wrap:wrap}
+.li-link{font-size:10px;color:var(--flight-c);text-decoration:none;display:inline-flex;align-items:center;gap:3px;background:var(--flight-bg);padding:2px 8px;border-radius:6px}
+.li-link:hover{text-decoration:underline}
+.li-thumb{width:42px;height:42px;border-radius:7px;object-fit:cover;border:1px solid var(--bd);cursor:pointer;flex-shrink:0}
+.li-actions{display:flex;flex-direction:column;gap:4px;align-items:center}
+.li-chk{width:20px;height:20px;border-radius:6px;border:2px solid var(--bd);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;transition:all .15s;flex-shrink:0}
+.li-chk.on{background:var(--teal);border-color:var(--teal)}
+.li-rm{cursor:pointer;color:#c0392b;font-weight:700;font-size:15px;opacity:.5;line-height:1}
+.li-rm:hover{opacity:1}
+.b-task{background:var(--task-bg);color:var(--task-c)} .b-work{background:var(--work-bg);color:var(--work-c)}
+.b-meeting{background:var(--meeting-bg);color:var(--meeting-c)} .b-deadline{background:var(--deadline-bg);color:var(--deadline-c)}
+.b-note{background:var(--note-bg);color:var(--note-c)} .b-salary{background:var(--salary-bg);color:var(--salary-c)}
+.b-holiday{background:var(--holiday-bg);color:var(--holiday-c)} .b-national{background:var(--national-bg);color:var(--national-c)}
+.b-flight{background:var(--flight-bg);color:var(--flight-c)} .b-car{background:var(--car-bg);color:var(--car-c)} .b-hotel{background:var(--hotel-bg);color:var(--hotel-c)}
+.mlist-empty{font-size:11px;color:var(--muted);font-style:italic;padding:4px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px}
+.overlay.open{display:flex}
+.overlay img{max-width:90%;max-height:90%;border-radius:12px}
+.print-title{display:none}
+@media print{
+  .no-print{display:none!important}
+  body{background:#fff}
+  .print-title{display:block;text-align:center;padding:10px 0 6px;font-size:18px;font-weight:700;color:#0e4d64}
+  .print-title small{display:block;font-size:11px;color:#555;font-weight:400;margin-top:2px}
+  .mhead{background:#0e4d64!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .li-date,.cell.holiday,.cell.salary,.cell.wknd,.cell.national,.cdot,
+  .b-task,.b-work,.b-meeting,.b-deadline,.b-note,.b-salary,.b-holiday,.b-national,.b-flight,.b-car,.b-hotel{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .li-rm,.li-chk,.li-thumb{display:none}
+  .grid{gap:.5rem;grid-template-columns:repeat(2,1fr)}
+  .main{padding:.2rem .4rem 1rem}
+  .mcard{break-inside:avoid;page-break-inside:avoid;box-shadow:none}
+  .cell:hover{box-shadow:none;border-color:transparent}
+  @page{margin:1cm;size:A4 portrait}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr no-print">
+  <h1>📅 تقويم المهام والمواعيد</h1>
+  <p>السنة الهجرية 1448هـ · مربوط بـ Google Sheets ومزامنة مباشرة على كل أجهزتك</p>
+  <div class="sync-badge"><span class="sync-dot" id="syncDot"></span><span id="syncText">جاري الاتصال…</span></div>
+</div>
+
+<!-- إعداد الرابط (يظهر إذا لم يُضبط) -->
+<div class="config-box no-print" id="configBox" style="display:none">
+  ⚙️ <strong>الخطوة الأخيرة:</strong> الصق رابط Google Apps Script Web App هنا ليبدأ المزامنة:
+  <input type="text" id="webAppUrlInput" placeholder="https://script.google.com/macros/s/AKfycbyzfpe72rdKGT7FuNNpJQPXY3jQyLFjAzYqylv8d44EQcoDKrTBdSR2LlidRp7rM9U6oA/exec">
+  <button class="btn btn-p" style="margin-top:8px" onclick="saveWebAppUrl()">حفظ وربط</button>
+</div>
+
+<div class="toolbar no-print">
+  <div class="fg"><label>من شهر</label><select id="fromMonth"></select></div>
+  <div class="fg"><label>إلى شهر</label><select id="toMonth"></select></div>
+  <button class="btn btn-p" onclick="render()">عرض</button>
+  <button class="btn btn-t" onclick="togglePanel()">＋ إضافة</button>
+  <button class="btn btn-o" onclick="loadFromServer()">🔄 تحديث</button>
+  <div class="spacer"></div>
+  <button class="btn btn-g" onclick="window.print()">🖨️ طباعة</button>
+</div>
+
+<div class="panel no-print" id="addPanel">
+  <h3>➕ إضافة / تعديل عنصر</h3>
+  <input type="hidden" id="editId">
+  <div class="prow">
+    <div class="fg"><label>الشهر</label><select id="evMonth"></select></div>
+    <div class="fg"><label>اليوم</label><input type="number" id="evDay" min="1" max="30" value="1" style="width:62px"></div>
+    <div class="fg"><label>النوع</label>
+      <select id="evType">
+        <option value="task">📌 مهمة</option>
+        <option value="work">💼 مهمة عمل</option>
+        <option value="meeting">📋 اجتماع</option>
+        <option value="deadline">⏰ موعد نهائي</option>
+        <option value="flight">✈️ حجز طيران</option>
+        <option value="car">🚗 حجز سيارة</option>
+        <option value="hotel">🏨 حجز فندق</option>
+        <option value="note">📝 ملاحظة</option>
+      </select>
+    </div>
+    <div class="fg" style="flex:1"><label>العنوان</label><input type="text" id="evName" placeholder="مثال: رحلة جدة - الرياض SV1234" onkeydown="if(event.key==='Enter')saveEvent()"></div>
+  </div>
+  <div class="prow" style="margin-top:.6rem">
+    <div class="fg" style="flex:1"><label>وصف / تفاصيل (اختياري)</label><textarea id="evDesc" placeholder="رقم الحجز، الصالة، الملاحظات..."></textarea></div>
+    <div class="fg" style="flex:1"><label>رابط (بريد / صورة / موقع)</label><input type="text" id="evLink" placeholder="https://..."></div>
+  </div>
+  <div class="prow" style="margin-top:.6rem">
+    <div class="fg"><label>📷 صورة من جهازك (تُحفظ في Drive)</label>
+      <input type="file" id="evImage" accept="image/*" onchange="previewImage(event)">
+      <img id="imgPreview" class="img-preview">
+    </div>
+    <div class="spacer"></div>
+    <button class="btn btn-t" id="saveBtn" onclick="saveEvent()">إضافة</button>
+    <button class="btn btn-o" onclick="resetForm()">إلغاء</button>
+  </div>
+</div>
+
+<div class="stats no-print" id="stats"></div>
+
+<div class="legend">
+  <div class="leg"><div class="dot" style="background:var(--salary-c)"></div>راتب</div>
+  <div class="leg"><div class="dot" style="background:var(--holiday-c)"></div>إجازة</div>
+  <div class="leg"><div class="dot" style="background:var(--national-c)"></div>وطني</div>
+  <div class="leg"><div class="dot" style="background:var(--task-c)"></div>مهمة</div>
+  <div class="leg"><div class="dot" style="background:var(--work-c)"></div>عمل</div>
+  <div class="leg"><div class="dot" style="background:var(--meeting-c)"></div>اجتماع</div>
+  <div class="leg"><div class="dot" style="background:var(--deadline-c)"></div>موعد نهائي</div>
+  <div class="leg"><div class="dot" style="background:var(--flight-c)"></div>✈️ طيران</div>
+  <div class="leg"><div class="dot" style="background:var(--hotel-c)"></div>🏨 فندق</div>
+  <div class="leg"><div class="dot" style="background:var(--car-c)"></div>🚗 سيارة</div>
+</div>
+
+<div class="print-title" id="printTitle"></div>
+<div class="main"><div class="grid" id="calRoot"></div></div>
+<div class="overlay" id="imgOverlay" onclick="this.classList.remove('open')"><img id="overlayImg"></div>
+
+<script>
+const MONTHS=[
+  {ar:"محرم",en:"Muharram",greg:"يونيو 2026",sd:2,days:29,sg:{m:6,d:16,y:2026}},
+  {ar:"صفر",en:"Safar",greg:"يوليو 2026",sd:3,days:30,sg:{m:7,d:15,y:2026}},
+  {ar:"ربيع الأول",en:"Rabiʿ I",greg:"أغسطس 2026",sd:5,days:29,sg:{m:8,d:14,y:2026}},
+  {ar:"ربيع الآخر",en:"Rabiʿ II",greg:"سبتمبر 2026",sd:6,days:30,sg:{m:9,d:12,y:2026}},
+  {ar:"جمادى الأولى",en:"Jumada I",greg:"أكتوبر 2026",sd:1,days:30,sg:{m:10,d:12,y:2026}},
+  {ar:"جمادى الآخرة",en:"Jumada II",greg:"نوفمبر 2026",sd:3,days:29,sg:{m:11,d:11,y:2026}},
+  {ar:"رجب",en:"Rajab",greg:"ديسمبر 2026",sd:4,days:30,sg:{m:12,d:10,y:2026}},
+  {ar:"شعبان",en:"Shaʿban",greg:"يناير 2027",sd:6,days:30,sg:{m:1,d:9,y:2027}},
+  {ar:"رمضان",en:"Ramadan",greg:"فبراير 2027",sd:1,days:29,sg:{m:2,d:8,y:2027}},
+  {ar:"شوال",en:"Shawwal",greg:"مارس 2027",sd:2,days:30,sg:{m:3,d:9,y:2027}},
+  {ar:"ذو القعدة",en:"Dhul-Qiʿdah",greg:"أبريل 2027",sd:4,days:29,sg:{m:4,d:8,y:2027}},
+  {ar:"ذو الحجة",en:"Dhul-Hijjah",greg:"مايو 2027",sd:5,days:30,sg:{m:5,d:7,y:2027}}
+];
+const BUILTIN={
+  "0-1":{name:"رأس السنة الهجرية",type:"holiday"},"0-10":{name:"عاشوراء",type:"holiday"},
+  "3-12":{name:"اليوم الوطني السعودي",type:"national"},
+  "8-1":{name:"بداية شهر رمضان",type:"holiday"},"8-15":{name:"يوم التأسيس",type:"national"},"8-27":{name:"ليلة القدر",type:"holiday"},
+  "9-1":{name:"عيد الفطر",type:"holiday"},"9-2":{name:"عيد الفطر",type:"holiday"},"9-3":{name:"عيد الفطر",type:"holiday"},
+  "11-9":{name:"يوم عرفة",type:"holiday"},"11-10":{name:"عيد الأضحى",type:"holiday"},"11-11":{name:"عيد الأضحى",type:"holiday"},
+  "11-12":{name:"عيد الأضحى",type:"holiday"},"11-13":{name:"عيد الأضحى",type:"holiday"}
+};
+const ICON={task:'📌',work:'💼',meeting:'📋',deadline:'⏰',salary:'💰',note:'📝',holiday:'🎉',national:'🇸🇦',flight:'✈️',car:'🚗',hotel:'🏨'};
+const TYPE_AR={task:'مهمة',work:'مهمة عمل',meeting:'اجتماع',deadline:'موعد نهائي',salary:'راتب',note:'ملاحظة',holiday:'إجازة',national:'وطني',flight:'حجز طيران',car:'حجز سيارة',hotel:'حجز فندق'};
+const COLOR={task:'#6a3491',work:'#1f6f3c',meeting:'#0e4d64',deadline:'#a8321f',salary:'#0c7a6f',note:'#7a5b00',holiday:'#9a2a20',national:'#7a4310',flight:'#1652a8',car:'#34495e',hotel:'#9c4a91'};
+const AR_W=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const URL_KEY='hijriCal_webAppUrl';
+
+let WEB_APP_URL = localStorage.getItem(URL_KEY) || '';
+let tasks = [];          // من الخادم
+let salaryMap={};
+let pendingImage=null;   // {base64,mimeType,filename}
+
+// ── إعداد الرابط ──
+function saveWebAppUrl(){
+  const v=document.getElementById('webAppUrlInput').value.trim();
+  if(!v||!v.includes('script.google.com')){flash('الصق رابط Web App صحيح');return}
+  WEB_APP_URL=v;localStorage.setItem(URL_KEY,v);
+  document.getElementById('configBox').style.display='none';
+  loadFromServer();
+}
+function checkConfig(){
+  if(!WEB_APP_URL){document.getElementById('configBox').style.display='block';setSync('off','لم يُربط بعد');return false}
+  return true;
+}
+function setSync(state,txt){
+  const d=document.getElementById('syncDot');d.className='sync-dot '+state;
+  document.getElementById('syncText').textContent=txt;
+}
+
+// ── تحميل من الخادم ──
+async function loadFromServer(){
+  if(!checkConfig())return;
+  setSync('','جاري المزامنة…');
+  try{
+    const res=await fetch(WEB_APP_URL+'?action=list');
+    const data=await res.json();
+    if(data.ok){tasks=data.tasks||[];setSync('on','متصل · '+tasks.length+' عنصر');render()}
+    else{setSync('off','خطأ: '+data.error)}
+  }catch(e){setSync('off','تعذّر الاتصال — تحقق من الرابط');}
+}
+
+// ── POST helper (text/plain لتجنّب CORS preflight) ──
+async function apiPost(payload){
+  const res=await fetch(WEB_APP_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+  return res.json();
+}
+
+function initSelects(){
+  ['fromMonth','toMonth','evMonth'].forEach(id=>{
+    const s=document.getElementById(id);
+    MONTHS.forEach((m,i)=>{const o=document.createElement('option');o.value=i;o.textContent=m.ar;s.appendChild(o)});
+  });
+  document.getElementById('toMonth').value=11;
+}
+function gregDateObj(mi,off){const sg=MONTHS[mi].sg;const d=new Date(sg.y,sg.m-1,sg.d);d.setDate(d.getDate()+off);return d}
+function gregLabel(mi,off){const d=gregDateObj(mi,off);return d.getDate()+'/'+(d.getMonth()+1)}
+function buildSalaryMap(){
+  salaryMap={};const g2h={};
+  MONTHS.forEach((m,mi)=>{for(let d=1;d<=m.days;d++){const g=gregDateObj(mi,d-1);g2h[`${g.getFullYear()}-${g.getMonth()+1}-${g.getDate()}`]=`${mi}-${d}`;}});
+  const gm=[];for(let m=6;m<=12;m++)gm.push({y:2026,m});for(let m=1;m<=6;m++)gm.push({y:2027,m});
+  gm.forEach(({y,m})=>{
+    let pay=new Date(y,m-1,27);const wd=pay.getDay();let note='الراتب';
+    if(wd===5){pay=new Date(y,m-1,26);note='الراتب (قُدّم للخميس)';}
+    else if(wd===6){pay=new Date(y,m-1,28);note='الراتب (أُجّل للأحد)';}
+    const gkey=`${pay.getFullYear()}-${pay.getMonth()+1}-${pay.getDate()}`;const hkey=g2h[gkey];
+    if(hkey)salaryMap[hkey]=note;
+  });
+}
+
+// ── صورة ──
+function previewImage(ev){
+  const file=ev.target.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const b64=e.target.result.split(',')[1];
+    pendingImage={base64:b64,mimeType:file.type,filename:file.name};
+    const p=document.getElementById('imgPreview');p.src=e.target.result;p.style.display='block';
+  };
+  r.readAsDataURL(file);
+}
+
+// ── إضافة / تعديل ──
+async function saveEvent(){
+  if(!checkConfig()){flash('اربط الرابط أولاً');return}
+  const id=document.getElementById('editId').value;
+  const mi=+document.getElementById('evMonth').value;
+  const day=+document.getElementById('evDay').value;
+  const type=document.getElementById('evType').value;
+  const title=document.getElementById('evName').value.trim();
+  const desc=document.getElementById('evDesc').value.trim();
+  const link=document.getElementById('evLink').value.trim();
+  if(!title){flash('أدخل العنوان');return}
+  if(day<1||day>MONTHS[mi].days){flash('رقم اليوم خارج نطاق الشهر ('+MONTHS[mi].days+')');return}
+
+  setSync('','جاري الحفظ…');
+  let imageUrl='',imageId='';
+  if(pendingImage){
+    setSync('','جاري رفع الصورة…');
+    const up=await apiPost({action:'uploadImage',...pendingImage});
+    if(up.ok){imageUrl=up.imageUrl;imageId=up.imageId}
+  }
+  const payload={month:mi,day,type,title,desc,link};
+  if(imageUrl){payload.imageUrl=imageUrl;payload.imageId=imageId}
+  if(id){payload.action='update';payload.id=id;await apiPost(payload)}
+  else{payload.action='add';await apiPost(payload)}
+  resetForm();await loadFromServer();flash('تم الحفظ ✅');
+}
+
+function resetForm(){
+  document.getElementById('editId').value='';
+  document.getElementById('evName').value='';
+  document.getElementById('evDesc').value='';
+  document.getElementById('evLink').value='';
+  document.getElementById('evImage').value='';
+  document.getElementById('imgPreview').style.display='none';
+  document.getElementById('saveBtn').textContent='إضافة';
+  pendingImage=null;
+}
+
+function editTask(id){
+  const t=tasks.find(x=>x.id===id);if(!t)return;
+  document.getElementById('addPanel').classList.add('open');
+  document.getElementById('editId').value=t.id;
+  document.getElementById('evMonth').value=t.month;
+  document.getElementById('evDay').value=t.day;
+  document.getElementById('evType').value=t.type;
+  document.getElementById('evName').value=t.title;
+  document.getElementById('evDesc').value=t.desc||'';
+  document.getElementById('evLink').value=t.link||'';
+  document.getElementById('saveBtn').textContent='حفظ التعديل';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+async function removeTask(id){
+  if(!confirm('حذف هذا العنصر؟'))return;
+  setSync('','جاري الحذف…');
+  await apiPost({action:'delete',id});await loadFromServer();flash('تم الحذف');
+}
+async function toggleDone(id){
+  setSync('','جاري التحديث…');
+  await apiPost({action:'toggle',id});await loadFromServer();
+}
+
+function quickAdd(mi,d){
+  resetForm();
+  document.getElementById('addPanel').classList.add('open');
+  document.getElementById('evMonth').value=mi;
+  document.getElementById('evDay').value=d;
+  document.getElementById('evName').focus();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function togglePanel(){document.getElementById('addPanel').classList.toggle('open')}
+function showImg(url){document.getElementById('overlayImg').src=url;document.getElementById('imgOverlay').classList.add('open')}
+
+let flashT;
+function flash(msg){
+  let f=document.getElementById('flashMsg');
+  if(!f){f=document.createElement('div');f.id='flashMsg';f.style.cssText='position:fixed;bottom:20px;right:50%;transform:translateX(50%);background:#243340;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:opacity .3s';document.body.appendChild(f)}
+  f.textContent=msg;f.style.opacity='1';clearTimeout(flashT);flashT=setTimeout(()=>f.style.opacity='0',2200);
+}
+
+function render(){
+  const from=+document.getElementById('fromMonth').value;
+  const to=+document.getElementById('toMonth').value;
+  const root=document.getElementById('calRoot');root.innerHTML='';
+  if(from>to){flash('شهر البداية قبل النهاية');return}
+  buildSalaryMap();
+  document.getElementById('printTitle').innerHTML=`تقويم المهام — من ${MONTHS[from].ar} إلى ${MONTHS[to].ar} 1448هـ<small>الكلية التقنية بحقل · التدريب التقني والمهني</small>`;
+
+  // فهرسة مهام المستخدم حسب الخلية
+  const byCell={};
+  tasks.forEach(t=>{const k=t.month+'-'+t.day;(byCell[k]=byCell[k]||[]).push(t)});
+
+  let totDays=0,totHol=0,totSal=0,totTask=0,totDone=0;
+  for(let mi=from;mi<=to;mi++){
+    const m=MONTHS[mi];totDays+=m.days;
+    const card=document.createElement('div');card.className='mcard';
+    let html=`<div class="mhead"><div class="ar">${m.ar} 1448هـ</div><div class="en">${m.en}<br>${m.greg}</div></div>
+      <div class="dhdr"><div class="dh">أحد</div><div class="dh">اثنين</div><div class="dh">ثلاثاء</div><div class="dh">أربعاء</div><div class="dh">خميس</div><div class="dh w">جمعة</div><div class="dh w">سبت</div></div>`;
+    let gridHtml='<div class="dgrid">';
+    for(let i=0;i<m.sd;i++)gridHtml+='<div class="cell empty"></div>';
+    const agenda=[];
+    for(let d=1;d<=m.days;d++){
+      const dow=(m.sd+d-1)%7,isWknd=dow===5||dow===6,key=mi+'-'+d;
+      const bi=BUILTIN[key],isHol=bi&&bi.type==='holiday',isNat=bi&&bi.type==='national';
+      const salLabel=salaryMap[key];const isSal=!!salLabel;
+      const uEvs=byCell[key]||[];
+      if(isHol)totHol++;if(isSal)totSal++;totTask+=uEvs.length;uEvs.forEach(t=>{if(t.done)totDone++});
+      let cls='cell';
+      if(isWknd)cls+=' wknd';if(isHol)cls+=' holiday';else if(isSal)cls+=' salary';else if(isNat)cls+=' national';
+      const dotTypes=[];if(isHol)dotTypes.push('holiday');if(isSal)dotTypes.push('salary');if(isNat)dotTypes.push('national');
+      uEvs.forEach(e=>dotTypes.push(e.type));
+      let dots=dotTypes.length?'<div class="cdots">'+dotTypes.slice(0,5).map(t=>`<div class="cdot" style="background:${COLOR[t]||'#999'}"></div>`).join('')+'</div>':'<div class="cdots"></div>';
+      gridHtml+=`<div class="${cls}" onclick="quickAdd(${mi},${d})"><span class="hn">${d}</span><span class="gn">${gregLabel(mi,d-1)}</span>${dots}</div>`;
+      if(bi)agenda.push({d,dow,type:bi.type,name:bi.name,builtin:true});
+      if(isSal)agenda.push({d,dow,type:'salary',name:salLabel,builtin:true});
+      uEvs.forEach(e=>agenda.push({d,dow,type:e.type,name:e.title,desc:e.desc,link:e.link,imageUrl:e.imageUrl,done:e.done,id:e.id,builtin:false}));
+    }
+    gridHtml+='</div>';html+=gridHtml;
+
+    let listHtml='<div class="mlist"><div class="mlist-title">📋 مهام ومناسبات '+m.ar+'</div>';
+    if(!agenda.length){listHtml+='<div class="mlist-empty">لا توجد مهام — اضغط على أي يوم للإضافة.</div>';}
+    else{
+      agenda.sort((a,b)=>a.d-b.d);
+      agenda.forEach(it=>{
+        const dateCls=it.type==='holiday'?'is-holiday':it.type==='salary'?'is-salary':it.type==='national'?'is-national':'';
+        let actions='',extra='';
+        if(!it.builtin){
+          actions=`<div class="li-actions">
+            <div class="li-chk ${it.done?'on':''}" onclick="toggleDone('${it.id}')">${it.done?'✓':''}</div>
+            <span class="li-rm" onclick="removeTask('${it.id}')">×</span>
+          </div>`;
+          if(it.desc)extra+=`<div class="li-desc">${it.desc}</div>`;
+          const links=[];
+          if(it.link)links.push(`<a class="li-link" href="${it.link}" target="_blank">🔗 رابط</a>`);
+          if(it.imageUrl)links.push(`<span class="li-link" onclick="showImg('${it.imageUrl}')" style="cursor:pointer">🖼️ صورة</span>`);
+          if(links.length)extra+=`<div class="li-links">${links.join('')}</div>`;
+        }
+        const thumb=(!it.builtin&&it.imageUrl)?`<img class="li-thumb" src="${it.imageUrl}" onclick="showImg('${it.imageUrl}')" onerror="this.style.display='none'">`:'';
+        const nameClick=it.builtin?'':`onclick="editTask('${it.id}')" style="cursor:pointer"`;
+        listHtml+=`<div class="li ${it.done?'done':''}">
+          <div class="li-date ${dateCls}"><span class="dn">${it.d}</span><span class="dg">${gregLabel(mi,it.d-1)}</span></div>
+          <div class="li-body">
+            <span class="li-name" ${nameClick}>${ICON[it.type]||'•'} ${it.name}</span>
+            ${extra}
+            <span class="li-meta">${AR_W[it.dow]} · <span class="li-badge b-${it.type}">${TYPE_AR[it.type]||''}</span></span>
+          </div>
+          ${thumb}${actions}
+        </div>`;
+      });
+    }
+    listHtml+='</div>';html+=listHtml;
+    card.innerHTML=html;root.appendChild(card);
+  }
+  document.getElementById('stats').innerHTML=
+    `<div class="stat">📅 <b>${to-from+1}</b> شهر</div>
+     <div class="stat">🗓️ <b>${totDays}</b> يوم</div>
+     <div class="stat">🎉 <b>${totHol}</b> إجازة</div>
+     <div class="stat">💰 <b>${totSal}</b> راتب</div>
+     <div class="stat">📌 <b>${totTask}</b> مهمة</div>
+     <div class="stat">✅ <b>${totDone}</b> منجزة</div>`;
+}
+
+// ── إقلاع ──
+initSelects();
+if(checkConfig())loadFromServer();
+else render();
+</script>
+</body>
+</html>
