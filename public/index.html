@@ -335,7 +335,7 @@ const TYPE_AR={task:'مهمة',work:'مهمة عمل',meeting:'اجتماع',dea
 const COLOR={task:'#6a3491',work:'#1f6f3c',meeting:'#0e4d64',deadline:'#a8321f',salary:'#0c7a6f',note:'#7a5b00',holiday:'#9a2a20',national:'#7a4310',flight:'#1652a8',car:'#34495e',hotel:'#9c4a91'};
 const AR_W=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const URL_KEY='hijriCal_webAppUrl';
-const DEFAULT_URL='https://script.google.com/macros/s/AKfycbxE9-A5I7dbAIdfNaSa-DMoGL1IuqDFIjICE7JXxS4UHPUn0p5Z8n7KDp_SCpHWYaem6g/exec;
+const DEFAULT_URL='https://script.google.com/macros/s/AKfycby-ud41wPrN10mw2SYOIcwvOYYII7-dHihxljvyzC1HEJ5GtwYZoEy2pP355vCrSQ_kDg/exec';
 
 let WEB_APP_URL = localStorage.getItem(URL_KEY) || DEFAULT_URL;
 let tasks = [];          // من الخادم
@@ -391,11 +391,25 @@ async function loadFromServer(){
   if(!checkConfig())return;
   setSync('','جاري المزامنة…');
   try{
-    const res=await fetch(WEB_APP_URL+'?action=list');
-    const data=await res.json();
-    if(data.ok){tasks=data.tasks||[];setSync('on','متصل · '+tasks.length+' عنصر');render()}
-    else{setSync('off','خطأ: '+data.error)}
-  }catch(e){setSync('off','تعذّر الاتصال — تحقق من الرابط');}
+    // timeout بعد 12 ثانية
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),12000);
+    const res=await fetch(WEB_APP_URL+'?action=list',{signal:controller.signal});
+    clearTimeout(timer);
+    const text=await res.text();
+    let data;
+    try{data=JSON.parse(text);}catch(pe){
+      setSync('off','خطأ في البيانات — تأكد من النشر');
+      console.error('Apps Script response (not JSON):',text.substring(0,300));
+      return;
+    }
+    if(data.ok){tasks=data.tasks||[];setSync('on','متصل · '+tasks.length+' عنصر');render();}
+    else{setSync('off','خطأ: '+data.error);console.error('Server error:',data);}
+  }catch(e){
+    if(e.name==='AbortError'){setSync('off','انتهت المهلة — تأكد من النشر الصحيح');}
+    else{setSync('off','تعذّر الاتصال: '+e.message);}
+    console.error('loadFromServer error:',e);
+  }
 }
 
 // ── POST helper (text/plain لتجنّب CORS preflight) ──
