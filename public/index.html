@@ -22,7 +22,34 @@
   --hotel-c:#9c4a91; --hotel-bg:#f6e3f3; --hotel-bd:#e4bcde;
   --bg:#eef1f4; --card:#fff; --bd:#dde2e7; --text:#243340; --muted:#7a8896;
   --shadow:0 1px 3px rgba(20,40,60,.06),0 4px 16px rgba(20,40,60,.05);
+  --cell-bg:#fff; --grid-bg:#eef4f7; --list-bg:#fafbfc; --input-bg:#fafbfc;
 }
+body.dark{
+  --bg:#0f1620; --card:#1a232f; --bd:#2c3a48; --text:#e3e9ef; --muted:#8a97a6;
+  --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);
+  --cell-bg:#1f2935; --grid-bg:#222d3a; --list-bg:#161e28; --input-bg:#222d3a;
+  /* تفتيح خلفيات الأنواع قليلاً للوضوح على الداكن */
+  --salary-bg:#16352e; --salary-c:#5fd6bd; --salary-bd:#1f5246;
+  --holiday-bg:#3a1f1c; --holiday-c:#f0a89f; --holiday-bd:#5a302b;
+  --weekend-bg:#1c2530; --weekend-c:#9aa7b6;
+  --task-bg:#2c2140; --task-c:#c2a3e8; --task-bd:#43335e;
+  --work-bg:#16331f; --work-c:#7fd49a; --work-bd:#1f4d2e;
+  --meeting-bg:#15303c; --meeting-c:#7cc4dd; --meeting-bd:#1f4a5c;
+  --deadline-bg:#3a1f1a; --deadline-c:#f0a294; --deadline-bd:#5a2f27;
+  --note-bg:#332b14; --note-c:#e8cd7a; --note-bd:#4d401f;
+  --national-bg:#332414; --national-c:#e8b87a; --national-bd:#4d381f;
+  --flight-bg:#162a44; --flight-c:#8db8ee; --flight-bd:#1f3e5c;
+  --car-bg:#232b33; --car-c:#aebcca; --car-bd:#39434d;
+  --hotel-bg:#33203044; --hotel-c:#de9ed8; --hotel-bd:#4d2f49;
+}
+body.dark .dh{color:#7cc4dd}
+body.dark .mlist-title{color:#8a97a6}
+body.dark .config-box{background:#2a2410;border-color:#4d401f;color:#e8cd7a}
+body.dark .btn-o{color:#7cc4dd}
+body.dark .btn-o:hover{background:#222d3a}
+body.dark .btn-g{background:#2c3a48} body.dark .btn-g:hover{background:#3a4a5a}
+body.dark .stat{background:#222d3a}
+body.dark .img-preview{border-color:#2c3a48}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 .hdr{background:linear-gradient(120deg,#0e4d64,#13738f 55%,#13a89a);color:#fff;padding:1.3rem 1.8rem 1.1rem;position:relative;overflow:hidden}
@@ -35,8 +62,8 @@ body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:va
 .toolbar{background:var(--card);border-bottom:1px solid var(--bd);padding:.75rem 1.4rem;display:flex;flex-wrap:wrap;gap:.7rem;align-items:flex-end;box-shadow:var(--shadow)}
 .fg{display:flex;flex-direction:column;gap:3px}
 .fg label{font-size:10.5px;color:var(--muted);font-weight:500}
-select,input,textarea,.fg input{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;font-family:inherit;font-size:13px;color:var(--text);background:#fafbfc;transition:border .15s}
-select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-2);background:#fff}
+select,input,textarea,.fg input{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;font-family:inherit;font-size:13px;color:var(--text);background:var(--input-bg);transition:border .15s}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-2);background:var(--card)}
 .btn{padding:8px 16px;border-radius:8px;border:none;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:5px}
 .btn:active{transform:scale(.97)}
 .btn-p{background:var(--primary);color:#fff} .btn-p:hover{background:var(--primary-2)}
@@ -65,11 +92,11 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-
 .mcard{background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);break-inside:avoid;display:flex;flex-direction:column}
 .mhead{padding:11px 15px;background:linear-gradient(100deg,var(--primary),var(--primary-2));color:#fff;display:flex;justify-content:space-between;align-items:center}
 .mhead .ar{font-size:14.5px;font-weight:600} .mhead .en{font-size:10.5px;opacity:.82;text-align:left;direction:ltr;line-height:1.5}
-.dhdr{display:grid;grid-template-columns:repeat(7,1fr);background:#eef4f7;border-bottom:1px solid var(--bd)}
+.dhdr{display:grid;grid-template-columns:repeat(7,1fr);background:var(--grid-bg);border-bottom:1px solid var(--bd)}
 .dh{text-align:center;font-size:10px;font-weight:600;color:var(--primary);padding:5px 2px}
 .dh.w{color:var(--weekend-c)}
 .dgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:5px}
-.cell{border-radius:8px;padding:4px 3px;min-height:42px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;border:1px solid transparent;transition:all .12s;background:#fff;position:relative}
+.cell{border-radius:8px;padding:4px 3px;min-height:42px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;border:1px solid transparent;transition:all .12s;background:var(--cell-bg);position:relative}
 .cell:hover{border-color:var(--primary-2);box-shadow:0 0 0 2px rgba(19,115,143,.1)}
 .cell.empty{visibility:hidden;cursor:default}
 .cell.wknd{background:var(--weekend-bg)} .cell.wknd .hn{color:var(--weekend-c)}
@@ -80,9 +107,9 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-
 .gn{font-size:8px;color:var(--muted);line-height:1.3}
 .cdots{display:flex;gap:2px;margin-top:2px;flex-wrap:wrap;justify-content:center;min-height:6px}
 .cdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.mlist{padding:8px 12px 12px;border-top:1px dashed var(--bd);background:#fafbfc}
+.mlist{padding:8px 12px 12px;border-top:1px dashed var(--bd);background:var(--list-bg)}
 .mlist-title{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px}
-.li{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:8px;margin-bottom:4px;font-size:12px;background:#fff;border:1px solid var(--bd);position:relative}
+.li{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:8px;margin-bottom:4px;font-size:12px;background:var(--card);border:1px solid var(--bd);position:relative}
 .li:hover{border-color:var(--primary-2)}
 .li.done{opacity:.6}
 .li.done .li-name{text-decoration:line-through}
@@ -114,9 +141,47 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-
 .overlay.open{display:flex}
 .overlay img{max-width:90%;max-height:90%;border-radius:12px}
 .print-title{display:none}
+
+/* ── الجوال ── */
+@media (max-width:600px){
+  .hdr{padding:1rem 1rem .9rem}
+  .hdr h1{font-size:1.15rem}
+  .hdr p{font-size:.72rem;max-width:70%}
+  .sync-badge{position:static;margin-top:8px;display:inline-flex}
+  .toolbar{padding:.6rem .7rem;gap:.5rem}
+  .toolbar .fg{flex:1;min-width:0}
+  .toolbar select{width:100%;font-size:13px}
+  .toolbar .btn{flex:1;justify-content:center;padding:9px 10px;min-width:0}
+  .btn{font-size:12.5px}
+  .panel{margin:.6rem .7rem 0;padding:.8rem .9rem}
+  .prow{gap:.5rem}
+  .prow .fg{flex:1 1 100%;min-width:0}
+  .prow input[type=text],.prow textarea,.prow select{width:100%}
+  .prow .fg[style*="62px"]{flex:0 0 80px}
+  .config-box{margin:.6rem .7rem 0}
+  .stats{padding:.6rem .7rem;gap:.4rem}
+  .stat{flex:1 1 calc(33% - .4rem);justify-content:center;font-size:11px}
+  .legend{padding:.5rem .7rem;gap:7px}
+  .main{padding:.7rem .7rem 2rem}
+  .grid{grid-template-columns:1fr;gap:.9rem}
+  .cell{min-height:46px}
+  .hn{font-size:14px}
+  .gn{font-size:8.5px}
+  .cdot{width:6px;height:6px}
+  .li{font-size:12.5px}
+  .li-name{font-size:13px}
+  .saveBtn,#saveBtn{flex:1}
+  .overlay img{max-width:96%;max-height:80%}
+}
+@media (max-width:380px){
+  .stat{flex:1 1 calc(50% - .4rem)}
+  .dh{font-size:9px}
+}
 @media print{
   .no-print{display:none!important}
   body{background:#fff}
+  body.dark{--bg:#fff;--card:#fff;--bd:#dde2e7;--text:#243340;--muted:#7a8896;--cell-bg:#fff;--grid-bg:#eef4f7;--list-bg:#fff;--input-bg:#fafbfc;--salary-bg:#d7f5ef;--salary-c:#0c7a6f;--holiday-bg:#fbe0dc;--holiday-c:#9a2a20;--weekend-bg:#eef1f4;--weekend-c:#5a6b7a;--task-bg:#ede0f7;--task-c:#6a3491;--work-bg:#dcf2e3;--work-c:#1f6f3c;--meeting-bg:#d6ecf4;--meeting-c:#0e4d64;--deadline-bg:#fce0db;--deadline-c:#a8321f;--note-bg:#fbf0cf;--note-c:#7a5b00;--national-bg:#fdebd0;--national-c:#7a4310;--flight-bg:#dde9f9;--flight-c:#1652a8;--car-bg:#e2e7ec;--car-c:#34495e;--hotel-bg:#f6e3f3;--hotel-c:#9c4a91}
+  body.dark .dh{color:#0e4d64}
   .print-title{display:block;text-align:center;padding:10px 0 6px;font-size:18px;font-weight:700;color:#0e4d64}
   .print-title small{display:block;font-size:11px;color:#555;font-weight:400;margin-top:2px}
   .mhead{background:#0e4d64!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -135,24 +200,51 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-
 
 <div class="hdr no-print">
   <h1>📅 تقويم المهام والمواعيد</h1>
-  <p>السنة الهجرية 1448هـ · مربوط بـ Google Sheets ومزامنة مباشرة على كل أجهزتك</p>
+  <p>السنة الهجرية 1448هـ · مزامنة مباشرة على كل أجهزتك عبر Google Sheets</p>
   <div class="sync-badge"><span class="sync-dot" id="syncDot"></span><span id="syncText">جاري الاتصال…</span></div>
 </div>
 
-<!-- إعداد الرابط (يظهر إذا لم يُضبط) -->
+<!-- إعداد الرابط (يُفتح من زر الإعدادات ⚙️) -->
 <div class="config-box no-print" id="configBox" style="display:none">
-  ⚙️ <strong>الخطوة الأخيرة:</strong> الصق رابط Google Apps Script Web App هنا ليبدأ المزامنة:
-  <input type="text" id="webAppUrlInput" placeholder="https://script.google.com/macros/s/AKfycbyzfpe72rdKGT7FuNNpJQPXY3jQyLFjAzYqylv8d44EQcoDKrTBdSR2LlidRp7rM9U6oA/exec">
-  <button class="btn btn-p" style="margin-top:8px" onclick="saveWebAppUrl()">حفظ وربط</button>
+  🔗 <strong>رابط الربط (Google Apps Script):</strong> يمكنك تعديله إذا تغيّر.
+  <input type="text" id="webAppUrlInput" placeholder="https://script.google.com/macros/s/.../exec">
+  <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+    <button class="btn btn-p" onclick="saveWebAppUrl()">حفظ وربط</button>
+    <button class="btn btn-o" onclick="document.getElementById('configBox').style.display='none'">إغلاق</button>
+  </div>
 </div>
 
-<div class="toolbar no-print">
-  <div class="fg"><label>من شهر</label><select id="fromMonth"></select></div>
+<!-- لوحة ربط تقويم الجوال -->
+<div class="config-box no-print" id="calSyncBox" style="display:none;background:var(--meeting-bg);border-color:var(--meeting-bd);color:var(--meeting-c)">
+  📲 <strong>ربط تقويم الجوال</strong> — طريقتان:
+  <div style="margin-top:10px;display:flex;flex-direction:column;gap:12px">
+    <div>
+      <div style="font-weight:600;margin-bottom:4px">1️⃣ تصدير لمرة واحدة (الأضمن)</div>
+      <div style="font-size:11px;opacity:.85;margin-bottom:6px">ينزّل ملف يحتوي كل مهامك — افتحه على الجوال واختر "إضافة للتقويم". (مع تنبيه قبل الموعد بيوم وبساعة)</div>
+      <button class="btn btn-p" onclick="exportIcs()">⬇️ تنزيل ملف التقويم (.ics)</button>
+    </div>
+    <div style="border-top:1px dashed currentColor;padding-top:10px">
+      <div style="font-weight:600;margin-bottom:4px">2️⃣ اشتراك مباشر (يتحدّث تلقائياً)</div>
+      <div style="font-size:11px;opacity:.85;margin-bottom:6px">انسخ الرابط واشترك فيه من تقويم الجوال — أي مهمة جديدة تظهر خلال ساعات (للقراءة فقط).</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <input type="text" id="icsLink" readonly style="flex:1;min-width:180px;font-size:11px">
+        <button class="btn btn-t" onclick="copyIcsLink()">📋 نسخ الرابط</button>
+      </div>
+      <div style="font-size:10.5px;opacity:.8;margin-top:8px;line-height:1.7">
+        <strong>آيفون:</strong> الإعدادات ← التقويم ← الحسابات ← إضافة حساب ← أخرى ← إضافة اشتراك تقويم ← الصق الرابط.<br>
+        <strong>أندرويد/قوقل:</strong> افتح Google Calendar على المتصفح ← Other calendars ← + ← From URL ← الصق الرابط.
+      </div>
+    </div>
+    <button class="btn btn-o" onclick="document.getElementById('calSyncBox').style.display='none'" style="align-self:flex-start">إغلاق</button>
+  </div>
   <div class="fg"><label>إلى شهر</label><select id="toMonth"></select></div>
   <button class="btn btn-p" onclick="render()">عرض</button>
   <button class="btn btn-t" onclick="togglePanel()">＋ إضافة</button>
   <button class="btn btn-o" onclick="loadFromServer()">🔄 تحديث</button>
+  <button class="btn btn-o" onclick="openCalSync()">📲 تقويم الجوال</button>
   <div class="spacer"></div>
+  <button class="btn btn-o" onclick="toggleDark()" id="darkBtn" title="الوضع الليلي">🌙</button>
+  <button class="btn btn-o" onclick="openConfig()" title="إعدادات الرابط">⚙️</button>
   <button class="btn btn-g" onclick="window.print()">🖨️ طباعة</button>
 </div>
 
@@ -238,23 +330,51 @@ const TYPE_AR={task:'مهمة',work:'مهمة عمل',meeting:'اجتماع',dea
 const COLOR={task:'#6a3491',work:'#1f6f3c',meeting:'#0e4d64',deadline:'#a8321f',salary:'#0c7a6f',note:'#7a5b00',holiday:'#9a2a20',national:'#7a4310',flight:'#1652a8',car:'#34495e',hotel:'#9c4a91'};
 const AR_W=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const URL_KEY='hijriCal_webAppUrl';
+const DEFAULT_URL='https://script.google.com/macros/s/AKfycbyzfpe72rdKGT7FuNNpJQPXY3jQyLFjAzYqylv8d44EQcoDKrTBdSR2LlidRp7rM9U6oA/exec';
 
-let WEB_APP_URL = localStorage.getItem(URL_KEY) || '';
+let WEB_APP_URL = localStorage.getItem(URL_KEY) || DEFAULT_URL;
 let tasks = [];          // من الخادم
 let salaryMap={};
 let pendingImage=null;   // {base64,mimeType,filename}
 
 // ── إعداد الرابط ──
+function openConfig(){
+  const box=document.getElementById('configBox');
+  document.getElementById('webAppUrlInput').value=WEB_APP_URL;
+  box.style.display=box.style.display==='block'?'none':'block';
+}
 function saveWebAppUrl(){
   const v=document.getElementById('webAppUrlInput').value.trim();
   if(!v||!v.includes('script.google.com')){flash('الصق رابط Web App صحيح');return}
   WEB_APP_URL=v;localStorage.setItem(URL_KEY,v);
   document.getElementById('configBox').style.display='none';
+  flash('تم تحديث الرابط');
   loadFromServer();
 }
 function checkConfig(){
-  if(!WEB_APP_URL){document.getElementById('configBox').style.display='block';setSync('off','لم يُربط بعد');return false}
+  if(!WEB_APP_URL){openConfig();setSync('off','لم يُربط بعد');return false}
   return true;
+}
+
+// ── ربط تقويم الجوال ──
+function openCalSync(){
+  if(!checkConfig()){flash('اربط الرابط أولاً');return}
+  const box=document.getElementById('calSyncBox');
+  document.getElementById('icsLink').value=WEB_APP_URL+'?action=ics';
+  box.style.display=box.style.display==='block'?'none':'block';
+  if(box.style.display==='block')box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function exportIcs(){
+  // فتح رابط الـ ics مباشرة لتنزيله
+  window.open(WEB_APP_URL+'?action=ics','_blank');
+  flash('جاري تنزيل ملف التقويم…');
+}
+function copyIcsLink(){
+  const inp=document.getElementById('icsLink');
+  inp.select();inp.setSelectionRange(0,99999);
+  const url=inp.value;
+  if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>flash('تم نسخ الرابط ✅'),()=>flash('انسخ الرابط يدوياً'));}
+  else{try{document.execCommand('copy');flash('تم نسخ الرابط ✅')}catch(e){flash('انسخ الرابط يدوياً')}}
 }
 function setSync(state,txt){
   const d=document.getElementById('syncDot');d.className='sync-dot '+state;
@@ -399,7 +519,7 @@ function render(){
   const root=document.getElementById('calRoot');root.innerHTML='';
   if(from>to){flash('شهر البداية قبل النهاية');return}
   buildSalaryMap();
-  document.getElementById('printTitle').innerHTML=`تقويم المهام — من ${MONTHS[from].ar} إلى ${MONTHS[to].ar} 1448هـ<small>التقويم الشخصي</small>`;
+  document.getElementById('printTitle').innerHTML=`تقويم المهام — من ${MONTHS[from].ar} إلى ${MONTHS[to].ar} 1448هـ<small>التقويم الهجري · أم القرى</small>`;
 
   // فهرسة مهام المستخدم حسب الخلية
   const byCell={};
@@ -478,7 +598,24 @@ function render(){
      <div class="stat">✅ <b>${totDone}</b> منجزة</div>`;
 }
 
+// ── الوضع الليلي ──
+const DARK_KEY='hijriCal_dark';
+function applyDark(on){
+  document.body.classList.toggle('dark',on);
+  const b=document.getElementById('darkBtn');
+  if(b){b.textContent=on?'☀️':'🌙';b.title=on?'الوضع النهاري':'الوضع الليلي';}
+}
+function toggleDark(){
+  const on=!document.body.classList.contains('dark');
+  localStorage.setItem(DARK_KEY,on?'1':'0');
+  applyDark(on);
+}
+
 // ── إقلاع ──
+// تطبيق التفضيل المحفوظ، أو تفضيل النظام إن لم يُحدّد
+let darkPref=localStorage.getItem(DARK_KEY);
+if(darkPref===null&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)darkPref='1';
+applyDark(darkPref==='1');
 initSelects();
 if(checkConfig())loadFromServer();
 else render();
