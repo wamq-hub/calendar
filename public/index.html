@@ -425,7 +425,10 @@ function render(){
       const dotTypes=[];if(isHol)dotTypes.push('holiday');if(isSal)dotTypes.push('salary');if(isNat)dotTypes.push('national');
       uEvs.forEach(e=>dotTypes.push(e.type));
       let dots=dotTypes.length?'<div class="cdots">'+dotTypes.slice(0,5).map(t=>`<div class="cdot" style="background:${COLOR[t]||'#999'}"></div>`).join('')+'</div>':'<div class="cdots"></div>';
-      gridHtml+=`<div class="${cls}" onclick="quickAdd(${mi},${d})"><span class="hn">${d}</span><span class="gn">${gregLabel(mi,d-1)}</span>${dots}</div>`;
+      // إطار ملوّن حول اليوم الذي يحتوي مهمة للمستخدم (بلون أول مهمة)
+      let borderStyle='';
+      if(uEvs.length){const bc=COLOR[uEvs[0].type]||'#999';borderStyle=` style="border:2px solid ${bc}"`;}
+      gridHtml+=`<div class="${cls}"${borderStyle} onclick="quickAdd(${mi},${d})"><span class="hn">${d}</span><span class="gn">${gregLabel(mi,d-1)}</span>${dots}</div>`;
       if(bi)agenda.push({d,dow,type:bi.type,name:bi.name,builtin:true});
       if(isSal)agenda.push({d,dow,type:'salary',name:salLabel,builtin:true});
       uEvs.forEach(e=>agenda.push({d,dow,type:e.type,name:e.title,desc:e.desc,link:e.link,imageUrl:e.imageUrl,done:e.done,id:e.id,builtin:false}));
