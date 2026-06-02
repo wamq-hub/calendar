@@ -207,7 +207,7 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-
 <!-- إعداد الرابط (يُفتح من زر الإعدادات ⚙️) -->
 <div class="config-box no-print" id="configBox" style="display:none">
   🔗 <strong>رابط الربط (Google Apps Script):</strong> يمكنك تعديله إذا تغيّر.
-  <input type="text" id="webAppUrlInput" placeholder="https://script.google.com/macros/s/AKfycbz83YmWV9pYmGL3bmy-IiOtB3aV9Ge42BtdxwJRgCn0ssBoDJ0iAb7y7-HpckVozT-THQ/exec">
+  <input type="text" id="webAppUrlInput" placeholder="https://script.google.com/macros/s/.../exec">
   <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
     <button class="btn btn-p" onclick="saveWebAppUrl()">حفظ وربط</button>
     <button class="btn btn-o" onclick="document.getElementById('configBox').style.display='none'">إغلاق</button>
@@ -330,7 +330,7 @@ const TYPE_AR={task:'مهمة',work:'مهمة عمل',meeting:'اجتماع',dea
 const COLOR={task:'#6a3491',work:'#1f6f3c',meeting:'#0e4d64',deadline:'#a8321f',salary:'#0c7a6f',note:'#7a5b00',holiday:'#9a2a20',national:'#7a4310',flight:'#1652a8',car:'#34495e',hotel:'#9c4a91'};
 const AR_W=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const URL_KEY='hijriCal_webAppUrl';
-const DEFAULT_URL='https://script.google.com/macros/s/AKfycbyzfpe72rdKGT7FuNNpJQPXY3jQyLFjAzYqylv8d44EQcoDKrTBdSR2LlidRp7rM9U6oA/exec';
+const DEFAULT_URL='https://script.google.com/macros/s/AKfycbz83YmWV9pYmGL3bmy-IiOtB3aV9Ge42BtdxwJRgCn0ssBoDJ0iAb7y7-HpckVozT-THQ/exec';
 
 let WEB_APP_URL = localStorage.getItem(URL_KEY) || DEFAULT_URL;
 let tasks = [];          // من الخادم
