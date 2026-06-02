@@ -399,7 +399,7 @@ function render(){
   const root=document.getElementById('calRoot');root.innerHTML='';
   if(from>to){flash('شهر البداية قبل النهاية');return}
   buildSalaryMap();
-  document.getElementById('printTitle').innerHTML=`تقويم المهام — من ${MONTHS[from].ar} إلى ${MONTHS[to].ar} 1448هـ<small>الكلية التقنية بحقل · التدريب التقني والمهني</small>`;
+  document.getElementById('printTitle').innerHTML=`تقويم المهام — من ${MONTHS[from].ar} إلى ${MONTHS[to].ar} 1448هـ<small>التقويم الشخصي</small>`;
 
   // فهرسة مهام المستخدم حسب الخلية
   const byCell={};
