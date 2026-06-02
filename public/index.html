@@ -248,6 +248,7 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary-
   <button class="btn btn-p" onclick="render()">عرض</button>
   <button class="btn btn-t" onclick="togglePanel()">＋ إضافة</button>
   <button class="btn btn-o" onclick="loadFromServer()">🔄 تحديث</button>
+  <button class="btn btn-o" onclick="resetUrl()" id="defaultUrlBtn" title="تثبيت الرابط الافتراضي المدمج">🔗 الرابط الافتراضي</button>
   <button class="btn btn-o" onclick="openCalSync()">📲 تقويم الجوال</button>
   <div class="spacer"></div>
   <button class="btn btn-o" onclick="toggleDark()" id="darkBtn" title="الوضع الليلي">🌙</button>
@@ -337,7 +338,7 @@ const TYPE_AR={task:'مهمة',work:'مهمة عمل',meeting:'اجتماع',dea
 const COLOR={task:'#6a3491',work:'#1f6f3c',meeting:'#0e4d64',deadline:'#a8321f',salary:'#0c7a6f',note:'#7a5b00',holiday:'#9a2a20',national:'#7a4310',flight:'#1652a8',car:'#34495e',hotel:'#9c4a91'};
 const AR_W=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const URL_KEY='hijriCal_webAppUrl';
-const DEFAULT_URL='https://script.google.com/macros/s/AKfycbyp-Y15NlD9XGGjqMDtDAsDb_s_08zP68PnnSnnVBJNOtfLJnBmlVO2ZJbYg4JOol6hew/exec';
+const DEFAULT_URL='https://script.google.com/macros/s/AKfycby-ud41wPrN10mw2SYOIcwvOYYII7-dHihxljvyzC1HEJ5GtwYZoEy2pP355vCrSQ_kDg/exec';
 
 let WEB_APP_URL = localStorage.getItem(URL_KEY) || DEFAULT_URL;
 let tasks = [];          // من الخادم
